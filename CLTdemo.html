@@ -1,0 +1,153 @@
+<html lang="en" dir="ltr">
+
+  <head>
+    <meta charset="utf-8">
+    <title>Ricky Magner's Webpage</title>
+    <link rel="stylesheet" href="styles.css">
+    <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
+  </head>
+
+  <body>
+    <header>
+      <nav>
+        <ul>
+          <li class="pages"><a href="index.html">Home</a></li>
+          <li class="pages"><a href="research.html">Research</a></li>
+          <li class="pages"><a href="teaching.html">Teaching</a></li>
+          <li class="pages"><a href="misc.html" class="current">Misc</a></li>
+        </ul>
+      </nav>
+    </header>
+
+    <h1> The Central Limit Theorem </h1>
+    <p class="center">
+        This is an interactive demo meant to illustrate the <i>Central Limit Theorem</i> from Probability, or at least the general idea.
+    </p>
+    <p>
+      Click one of the buttons below the graphs to roll a <b>single</b> die. The result will be recorded in the bar graph.
+    </p>
+    <div id="CLTplot1" style="width:600px;height:250px;padding:20px;" class="center"></div>
+
+    <section>
+      <button class="rollButton">Roll 1 Die</button>
+      <button class="rollButton">Roll 5 Dice</button>
+      <button class="rollButton">Roll 20 Dice</button>
+      <button class="rollButton">Roll 100 Dice</button>
+      <button class="rollButton">Roll 1000 Dice</button>
+    </section>
+
+    <p>
+      Now try rolling a <b>single</b> die <b>multiple times</b>. You can either click the "Roll 1 Die" button over and over, or do a bunch of iterations with the
+      other buttons. The graph should update with the total counts. You can always refresh the page to reset the data.
+    </p>
+
+    <p>
+      Some questions to consider after rolling a bunch of times:
+      <ul>
+        <li> What sort of shape does the bar graph take?</li>
+        <li> Why does it have that shape?</li>
+        <li> What do you expect the value of a single roll to be? (Can you think of any reasonable answer??) </li>
+      </ul>
+    </p>
+
+    <hr>
+
+    <p>
+      Instead of just rolling one die, let's roll two at a time. You can use the graph and buttons below to simulate this. The graph will record now the <i>average</i>
+      of the dice roll. So if you roll 3 & 6, the bar for 4.5 will increase.
+
+    <div id="CLTplot2" style="width:600px;height:250px;padding:20px;" class="center"></div>
+
+    <section>
+      <button class="rollPairButton">Roll 1 Die Pair</button>
+      <button class="rollPairButton">Roll 5 Dice Pair</button>
+      <button class="rollPairButton">Roll 20 Dice Pair</button>
+      <button class="rollPairButton">Roll 100 Dice Pair</button>
+      <button class="rollPairButton">Roll 1000 Dice Pair</button>
+    </section>
+
+    <p>
+      Roll the dice pairs a bunch of times, then reflect on the following:
+      <ul>
+        <li> What shape does the graph take now? Why is that? (Hint: What happens when extreme values are rolled on opposite sides?) </li>
+        <li> What would you expect the value of the average to be most often? Does it match the picture? </li>
+      </ul>
+    </p>
+
+    <hr>
+
+    <p>
+      Now we have a pack of 25 dice! But before you get rolling them and plotting the average of the roll, let's think about the questions <i>first</i>.
+      <ul>
+        <li> What sort of shape should the graph take after rolling a bunch of 25-packs? </li>
+        <li> Come up with some really good reasoning for your prediction! </li>
+        <li> What should the average of the roll be around, typically? </li>
+      </ul>
+    </p>
+
+    <div id="CLTplot3" style="width:600px;height:250px;padding:20px;" class="center"></div>
+
+    <section>
+      <button class="roll25Button">Roll 1 Die 25 Pack</button>
+      <button class="roll25Button">Roll 5 Dice 25 Pack</button>
+      <button class="roll25Button">Roll 20 Dice 25 Pack</button>
+      <button class="roll25Button">Roll 100 Dice 25 Pack</button>
+      <button class="roll25Button">Roll 1000 Dice 25 Pack</button>
+    </section>
+
+    <p>
+      After rolling, check your answers from before. Then think a bit more about these:
+      <ul>
+        <li> How often do you expect the average of the roll to be 1? Can you quantify this at all? </li>
+        <li> Since things are random, it's certainly <i>possible</i> to get an average of 1. How do the chances in this case compare with when we were rolling two dice? </li>
+        <li> How do the chances compare with rolling an average of 2.5 in this case compared to the chances of rolling an average of 2.5 in the previous case?
+          Do you have an intuitive explanation for that? (Hint: Think about opposite extremes again.)</li>
+        </ul>
+    </p>
+
+    <hr>
+
+    <p> OK, here's the real test of what we've seen so far. I've just handed you a pack of <b>400</b> dice. First, think out analogues of the above questions
+      (expected shape? average?), then roll them.
+    </p>
+
+    <div id="CLTplot4" style="width:600px;height:250px;padding:20px;" class="center"></div>
+
+    <section>
+      <button class="roll400Button">Roll 1 Die 400 Pack</button>
+      <button class="roll400Button">Roll 5 Dice 400 Pack</button>
+      <button class="roll400Button">Roll 20 Dice 400 Pack</button>
+      <button class="roll400Button">Roll 100 Dice 400 Pack</button>
+      <button class="roll400Button">Roll 1000 Dice 400 Pack</button>
+    </section>
+
+    <p>
+      Let's refine our intuition:
+      <ul>
+        <li> First: what's the shape? Can you explain it intuitively? </li>
+        <li> What average of the roll do you expect? How do the chances of rolling 2.5 compare with the previous cases? </li>
+        <li> If you're feeling ambitious, try to quantify your thoughts from the last question. How does increasing the number of dice rolled at once
+          change how <i>spread</i> out the averages are? The x-axis has the same scale in all of the graphs, so you can go back and compare.
+        </ul>
+    </p>
+
+    <hr>
+
+    <p>
+      After you've thought about the above, the main intuition of the Central Limit Theorem should be clearer. The ideas above apply quite generally when measuring
+      the average of some random sample. The <i>sampling distributions</i> drawn above get narrower as the sample size increases because the larger the sample,
+      the more opportunities for opposite extreme values to balance each other towards the center there are. So in every case the <i>distribution of the sample means</i>
+      will be centered around the same "average," but the variance/standard deviation decreases. This leads to the very practical conclusion that as the sample size
+      grows large, we can feel <i>more confident</i> that our <i>sample mean</i> reflects the <i>population mean</i>, because it almost certainly lies in <thead>
+      narrow spike centered around the population mean. The Central Limit Theorem quantifies this intuition to give a precise prediction of what the standard deviation
+      of the sample distribution should be.
+      </thead>
+    </p>
+
+    <script src="statplots.js"></script>
+    <noscript>
+        Please enable Javascript to use this demo!
+    </noscript>
+  </body>
+
+</html>

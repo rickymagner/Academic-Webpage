@@ -1,0 +1,225 @@
+% In LaTeX, anything after a % sign is interpreted as a "comment" meaning it has no effect on how the document is compiled. You can follow along the comments to see explanations for what's happening.
+
+\documentclass[12pt]{article} 
+% The documentclass command should be first in the document. (Note: Commands all begin with a \ . This is a special character when writing LaTeX files. Commands are often followed by {word} for some word that changes the behavior of the command.) Here we set the global font size at 12, and the document "style" as article. More can be found online about different document styles, but article is good enough for a casual document. Other examples include report, book, ....
+
+
+\usepackage{amssymb}
+\usepackage{amsmath}
+\usepackage[margin=1in]{geometry}
+% Here we've "imported" some LaTeX packages that are usually installed on your computer when you install LaTeX, made by the AMS. They include some very common math symbols we'll have access to below. You can import as many packages as you want to use even fancier commands. Search the web for more options.
+% Note the last geometry package can be used to set global margins. The default is too large for many people's tastes.
+
+%\newcommand{\ZZ}{mathbb{Z}}
+% Come back here after reading Section 5
+
+\title{\LaTeX Quick Start Guide}
+% This declares the title of the document. Note we use the command \LaTeX instead of just writing LaTeX to get the fun styling - just a little Easter Egg!
+
+\author{Ricky Magner}
+% I suppose I can take credit for this!
+
+\date{}
+% Writing this command with no input inside the {} means when the title is written, the date won't appear.
+
+
+\begin{document}
+	% Here we start the document itself. Any command starting with \begin signifies opening up an "environment." Inside of an environment, various rules apply depending on the environment. In this case, it just means "everything inside is part of the document" as opposed to the header we wrote above. Every environment opens with a \begin command, and ends with the corresponding \end command. See the end of the file.
+	
+	\maketitle
+	% This ensures the title we wrote above appears in the actual document - inside the document environment. Try commenting it out and seeing how it changes the document! Notice the date isn't present - try commenting out the \date{} command to see what changes.
+	
+	This guide assumes you already have \LaTeX and a compiler installed on your computer. The best way to follow this guide is to read this as a pdf while also comparing with the .tex file. Then read the comments written there and try tweaking a few things to see how things change. You should start by reading the header of the .tex file now up until you get to this part of the text. I'll make references in the text to how the .tex file is written. 
+	
+	For example, note how in the .tex file I've skipped a line to get a new paragraph, but in the pdf the skip isn't there! We can change that by telling \LaTeX we want a skip, of varying size:
+	
+	\smallskip
+	
+	See?
+	
+	\medskip
+	
+	It's not too hard...
+	
+	\bigskip
+	
+	To add some space!
+	
+	\bigskip
+	\bigskip
+	
+	Of course, we can put a few together to get different skip sizes total.
+	
+	\medskip
+	
+	Writing in plaintext is pretty self-explanatory after that. You've also got \textbf{bold text} and \textit{italics} if you like, or even \underline{underlined text}. We'll divide the rest of this guide into sections to make it easier to read.
+	
+	\section{Math Mode}
+	% Note that the "section" command gives us a nice looking separation, and the input is the title. The numbering is automatic, but various numbering settings can be configured - this topic is more advanced than this guide is intended for. If using a nice compiler program, you may also notice some tabs corresponding to the sections that you can click on to jump to that part of the document - very useful for managing longer papers!
+	
+	One of the most important aspects of writing in \LaTeX is writing mathematics! To do this, we use ``math mode.'' % Note how I wrote in the double quotes - it's a little funny. Compare to doing it in the "classic" way and you'll see why I did it that way.
+	
+	\bigskip
+	
+	Math mode is activated by typing a \$ and ends when you type a second \$, no matter how many spaces or indents you have. Anything inside gets ``stylized'' into a more mathematical format. In particular, text gets italicized (so variables look nicer) and certain math commands can be displayed that would normally result in a compiling error if written outside of math mode. For example: $x^2 - 3x + 1 = 0$. Note even the hyphen gets elongated into a good minus sign! Compare - with $-$. 
+	
+	\bigskip
+	
+	In math mode, you can use ``calculator syntax'' to write all sorts of nice algebraic formulas. Here are some more examples:
+	
+	\smallskip
+	$y^2 = y \cdot y$ 
+	% Compare with y * y
+	
+	\smallskip
+	$\sqrt{81} = 9$
+	
+	\smallskip
+	$\sqrt[3]{64} = 4$
+	
+	\smallskip
+	$f(x) = \sin^2(x) \implies f'(x) = 2\sin(x)\cos(x)$
+	% Yes, we have trig functions!
+	
+	\bigskip
+	
+	Sometimes you don't want to write math in-text, but rather on its own line to emphasize an equation, or otherwise make smaller notation a bit bigger. The solution in \LaTeX is quite simple: instead of the \$ math mode, use the command $\backslash$[ to start math mode on its own nicer line, and $\backslash$] to end it. For example,
+	\[
+		\sqrt{x^2+y^2} = r.
+	\]
+	Compare with: $\sqrt{x^2+y^2} = r$. It's easy for these types of formulas to get lost in a block of text.
+	
+	
+	\section{Common Math Commands}
+	
+	Here are some other common math commands you should know to get on your way to typing good math in \LaTeX. We'll use the ``itemize'' environment in the .tex file to create a nice bullet list. % The item command creates a new bullet.
+	\begin{itemize}
+		
+	\item Fractions, which look much nicer in the latter math mode described above:
+	\[
+	\frac{10}{2} = 5.
+	\]
+	% Note the frac command takes two inputs, numerator and denominator. 
+	
+	They can also be a bit more complicated:
+	\[
+	\frac{\sqrt{x^3 - 1}}{\sin(x)} < |\cos(x)\tan(y)|.
+	\]
+	
+	We can simulate derivatives using these as well:
+	\[
+	\frac{d}{dx}(e^x) = e^x.
+	\]
+	
+	\item Integrals:
+	\[
+	\int x^n dx = \frac{1}{n+1} \cdot x^{n+1}.
+	\]
+	% Note we needed to encapsulate the exponent n+1 inside braces {}. Check what happens if we don't!
+	
+	\item Subscripts can be accessed via the \_ key:
+	\[
+	x_1 = 1, x_2 = 4, x_3 = 9, ..., x_{n+1} = (n+1)^2.
+	\]
+	% Note the {} around the subscript with more than 1 term.
+	
+	We can combine with the integral to get definite integrals:
+	\[
+	\int_{-\infty}^{17} e^{-x^2} dx.
+	\]
+	
+	\item Other notions of equality/similarity: we have $\equiv$ used for congruences, like:
+	\[
+	17 \equiv 2 \bmod 5
+	\]
+	% Note there is a \mod command, but \bmod is just usually better!
+	
+	And another common one is similarity:
+	\[
+	a \sim b.
+	\]
+	
+	Not to mention, $a \approx b$. Of course, there are inequalities too like $a \ge b$ and $c \le d$. 
+	
+	\item Set notation. If $S$ is a set, and $x$ is an element of $S$, we write that as $x \in S$. We can also define $S$ like
+	\[
+	S = \{ x : x \text{ an even integer} \}.
+	\]
+	% Note the intentional space before ``an''; try it without!
+	We also talk of functions from a set $S$ to a set $T$. We write this as $f: S \to T$. We can compare sets as usual, for example: $S \subseteq T$ or $A \supset B$. The empty set is $\varnothing$. We can do our usual $A \cup B$ and $S \cap T$. 
+	
+	\item If we want to cross out some notation to negate a math symbol, we can do that easily: $x \not \in S$, or $x \not= y$, or $a \not \sim b$. Though ``not equal'' is so commonly used, it has a shorter special command for it: $x \neq y$. 
+	
+	\end{itemize}
+	% Always, always, always end your environments like this! If you don't, the compiler will scream in agony!
+	
+	\section{Special Letters}
+	
+	Part of writing math includes writing well beyond the English alphabet. Typing these in \LaTeX is simple. For example, the commonly used Greek letters can be typed using their name as a command. For example:
+	
+	\medskip
+	$\sigma$ is lowercase sigma, while $\Sigma$ is uppercase sigma. 
+	% Compare with \sum, which is a type of upper case sigma.
+	
+	\medskip
+	We've got $\alpha, \beta, \gamma, \delta, \epsilon, ...$ and of course $\pi$!
+	
+	\medskip
+	You may not like the default $\epsilon$ and $\phi$, so there are variants: $\varepsilon$ and $\varphi$.
+	
+	\bigskip
+	What about special symbols that don't belong to an alphabet, like the integers? We can use the AMS package ``mathbb'' for Blackboard Bold letters. Observe:
+	\[
+	\mathbb{N}, \mathbb{Z}, \mathbb{Q}, \mathbb{R}, \mathbb{C}.
+	\] 
+	You can also write some fancy calligraphic characters, like $\mathcal{A}, \mathcal{M}, \mathcal{S}$. There are lots of different ways to get fancy letters from other packages too!
+	
+	\section{Some Other Useful Environments}
+	
+	The above is quite a bit to get started, but there's one last very useful set of ideas you should know for using \LaTeX - there are lots of environments that help organize text in very smart ways. 
+	
+	\begin{enumerate}
+		
+		\item The ``enumerate'' environment is similar to itemize, but instead of bullets it'll number the list for you. The best part is, if you insert an item somewhere in the middle, then the numbers get relabeled after recompiling! Always use this environment to number any list. 
+		
+		\item The align and align* environments are great for showing calculations step by step. The normal one makes each line numbered, whereas the * gets rid of the numbering (most commonly used). Here's a demo:
+		\begin{align*}
+			3x - 3 &= 5x - 7 \\
+			3x &= 5x - 4 \\
+			-2x &= -4 \\
+			x &= 2.
+		\end{align*}
+		% Using the & tells LaTeX where to center each line around, regardless of the length of each side. Then the \\ command marks when to move to the next line - note just pressing Enter above won't do it!
+		Don't be afraid of breaking up some align* environments with some narration to explain what's happening!
+		
+		\item The ``array'' environment is very flexible in making tables, but also functions well for presenting matrices. For example:
+		\[
+		\left( \begin{array}{ccc} 1 & 2 & 3 \\ 4 & 5 & 6 \\ 0 & \pi & x \end{array} \right).
+		\]
+		Check the comments for how to do it!
+		% First, the \left and \right make the ( and ) big enough to surround the matrix - try without them! You can also use \left[ and \right] if you prefer. Next, the {ccc} says we want 3 columns with centered text in each box. Finally, the & separated boxed content, and \\ says when we're ready for the next row. We can continue adding rows indefinitely.
+		
+	\end{enumerate}
+
+	\section{Final Tips}
+	
+	Suppose you want to write $\mathbb{Z}$ a lot if you're talking about the integers often. The command isn't too long, but are there any shortcuts? The good news is you can create your own! Add $\backslash$newcommand\{$\backslash$ZZ\}\{$\backslash$mathbb\{Z\}\} as it appears here to the header, under the usepackage commands. Then you can type $\backslash$ZZ inside any math mode to get $\mathbb{Z}$! You can use this idea to make your own commands and write faster.
+	
+	\bigskip
+	
+	A few times now you've seen me write special symbols like \$ and $\backslash$ which have a precise meaning to the \LaTeX compiler. How'd I get away with it? For most of these, you can just add a $\backslash$ in front to ``escape'' the character - i.e. not have it interpreted with its special meaning by the compiler. This applies to e.g. \$, \%, \&, and more. Some special exceptions include $\backslash$ of course.
+	
+	\bigskip
+	
+	Compile frequently, as you create the document, so you can debug any errors and check that what's being displayed is actually what you envisioned. Fix these things as you go so they don't become unbearable to manage at the end.
+	
+	\bigskip
+	
+	The more you practice, the easier it becomes to remember the syntax for writing what you want. The above gives some of the most standard things you'd want to type mathematically. However, if you're looking for more, try searching the Internet for solutions to what you're trying to do. \LaTeX is very powerful, so chances are what you want already exists and is easy to learn.
+	
+	
+	
+	
+\end{document}
+
+
