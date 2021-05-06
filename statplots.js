@@ -3,6 +3,8 @@ var x2 = [];
 var x3 = [];
 var x4 = [];
 
+
+// Function for rolling dice
 let roll = (times, number_rolled, origData) => {
   for (i = 0; i < times; i++) {
     var num = 0;
@@ -15,6 +17,8 @@ let roll = (times, number_rolled, origData) => {
   return origData;
 };
 
+
+// Get data structure to put in Plotly
 let genData = (data, tickLength) => {return [
   {
     x: data,
@@ -27,6 +31,8 @@ let genData = (data, tickLength) => {return [
   }
 ]};
 
+
+// Create layout to put in Plotly
 let genLayout = (tickLength) => {return {
   xaxis: {
     range: [0.5,6.5],
@@ -34,38 +40,38 @@ let genLayout = (tickLength) => {return {
   },
 }};
 
-Plotly.newPlot("CLTplot1", genData([],1), genLayout(1));
-Plotly.newPlot("CLTplot2", genData([],1), genLayout(1));
-Plotly.newPlot("CLTplot3", genData([],1), genLayout(1));
-Plotly.newPlot("CLTplot4", genData([],1), genLayout(1));
+
+// Populate page with Plotly plots that get filled dynamically
+for (let i = 1; i < 5; i++) {
+	Plotly.newPlot("CLTplot" + i.toString(), genData([],1), genLayout(1));
+}
 
 
-var rollButton = document.querySelectorAll(".rollButton");
+// Set button presses / number to roll
 const buttonTimes = [1,5,20,100,1000];
 const numberRolled = [1,2,25,400];
-rollButton[0].addEventListener("click", () => Plotly.newPlot("CLTplot1", genData(roll(buttonTimes[0],numberRolled[0], x1),1/numberRolled[0]), genLayout(1))); // for some reason a loop over index doesn't work...
-rollButton[1].addEventListener("click", () => Plotly.newPlot("CLTplot1", genData(roll(buttonTimes[1],numberRolled[0], x1),1/numberRolled[0]), genLayout(1)));
-rollButton[2].addEventListener("click", () => Plotly.newPlot("CLTplot1", genData(roll(buttonTimes[2],numberRolled[0], x1),1/numberRolled[0]), genLayout(1)));
-rollButton[3].addEventListener("click", () => Plotly.newPlot("CLTplot1", genData(roll(buttonTimes[3],numberRolled[0], x1),1/numberRolled[0]), genLayout(1)));
-rollButton[4].addEventListener("click", () => Plotly.newPlot("CLTplot1", genData(roll(buttonTimes[4],numberRolled[0], x1),1/numberRolled[0]), genLayout(1)));
+
+
+// Add event listeners to each button with appropriate actions; use "let" to give i loop scope
+var rollButton = document.querySelectorAll(".rollButton");
+for (let i = 0; i < 5; i++) {
+	rollButton[i].addEventListener("click", () => Plotly.newPlot("CLTplot1", genData(roll(buttonTimes[i],numberRolled[0], x1),1/numberRolled[0]), genLayout(1)));
+}
+
 
 var rollPairButton = document.querySelectorAll(".rollPairButton");
-rollPairButton[0].addEventListener("click", () => Plotly.newPlot("CLTplot2", genData(roll(buttonTimes[0],numberRolled[1], x2),1/numberRolled[1]), genLayout(1/2))); // for some reason a loop over index doesn't work...
-rollPairButton[1].addEventListener("click", () => Plotly.newPlot("CLTplot2", genData(roll(buttonTimes[1],numberRolled[1], x2),1/numberRolled[1]), genLayout(1/2)));
-rollPairButton[2].addEventListener("click", () => Plotly.newPlot("CLTplot2", genData(roll(buttonTimes[2],numberRolled[1], x2),1/numberRolled[1]), genLayout(1/2)));
-rollPairButton[3].addEventListener("click", () => Plotly.newPlot("CLTplot2", genData(roll(buttonTimes[3],numberRolled[1], x2),1/numberRolled[1]), genLayout(1/2)));
-rollPairButton[4].addEventListener("click", () => Plotly.newPlot("CLTplot2", genData(roll(buttonTimes[4],numberRolled[1], x2),1/numberRolled[1]), genLayout(1/2)));
+for (let i = 0; i < 5; i++) {
+   rollPairButton[i].addEventListener("click", () => Plotly.newPlot("CLTplot2", genData(roll(buttonTimes[i],numberRolled[1], x2),1/numberRolled[1]), genLayout(1/2)));
+}
+
 
 var roll25Button = document.querySelectorAll(".roll25Button");
-roll25Button[0].addEventListener("click", () => Plotly.newPlot("CLTplot3", genData(roll(buttonTimes[0],numberRolled[2], x3),1/numberRolled[2]), genLayout(1/2))); // for some reason a loop over index doesn't work...
-roll25Button[1].addEventListener("click", () => Plotly.newPlot("CLTplot3", genData(roll(buttonTimes[1],numberRolled[2], x3),1/numberRolled[2]), genLayout(1/2)));
-roll25Button[2].addEventListener("click", () => Plotly.newPlot("CLTplot3", genData(roll(buttonTimes[2],numberRolled[2], x3),1/numberRolled[2]), genLayout(1/2)));
-roll25Button[3].addEventListener("click", () => Plotly.newPlot("CLTplot3", genData(roll(buttonTimes[3],numberRolled[2], x3),1/numberRolled[2]), genLayout(1/2)));
-roll25Button[4].addEventListener("click", () => Plotly.newPlot("CLTplot3", genData(roll(buttonTimes[4],numberRolled[2], x3),1/numberRolled[2]), genLayout(1/2)));
+for (let i = 0; i < 5; i++) {
+   roll25Button[i].addEventListener("click", () => Plotly.newPlot("CLTplot3", genData(roll(buttonTimes[i],numberRolled[2], x3),1/numberRolled[2]), genLayout(1/2)));
+}
+
 
 var roll400Button = document.querySelectorAll(".roll400Button");
-roll400Button[0].addEventListener("click", () => Plotly.newPlot("CLTplot4", genData(roll(buttonTimes[0],numberRolled[3], x4),1/numberRolled[2]), genLayout(1/2))); // for some reason a loop over index doesn't work...
-roll400Button[1].addEventListener("click", () => Plotly.newPlot("CLTplot4", genData(roll(buttonTimes[1],numberRolled[3], x4),1/numberRolled[2]), genLayout(1/2)));
-roll400Button[2].addEventListener("click", () => Plotly.newPlot("CLTplot4", genData(roll(buttonTimes[2],numberRolled[3], x4),1/numberRolled[2]), genLayout(1/2)));
-roll400Button[3].addEventListener("click", () => Plotly.newPlot("CLTplot4", genData(roll(buttonTimes[3],numberRolled[3], x4),1/numberRolled[2]), genLayout(1/2)));
-roll400Button[4].addEventListener("click", () => Plotly.newPlot("CLTplot4", genData(roll(buttonTimes[4],numberRolled[3], x4),1/numberRolled[2]), genLayout(1/2)));
+for (let i = 0; i < 5; i++) {
+   roll400Button[i].addEventListener("click", () => Plotly.newPlot("CLTplot4", genData(roll(buttonTimes[i],numberRolled[3], x4),1/numberRolled[2]), genLayout(1/2)));
+}
